@@ -8,7 +8,7 @@ import { FormBtn } from "../../components/Form";
 // import { List, ListItem } from "../../components/List";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 import firebase, { auth, provider } from "../../Firebase";
-// import { Button, Icon } from 'react-materialize'
+
 
 class Signin extends Component {
     constructor() {
@@ -50,19 +50,17 @@ class Signin extends Component {
 
     render() {
         return (
-            <Container>
-                <Row>
-                    <Col s={10}>
-                    </Col>
-                    <Col s={2}>
-                        {/* <h1>Fun Food Friends</h1> */}
+            <div className='app'>
+                <header>
+                    <div className="wrapper">
+                        <h1>Fun Food Friends</h1>
                         {this.state.user ?
                             <button onClick={this.logout}>Logout</button>
                             :
                             <button onClick={this.login}>Log In</button>
                         }
-                    </Col>
-                </Row>
+                    </div>
+                </header>
                 {this.state.user ?
                     <div>
                         <div className='user-profile'>
@@ -71,10 +69,10 @@ class Signin extends Component {
                     </div>
                     :
                     <div className='wrapper'>
-                        <p>You must be logged in to see anything.</p>
+                        <p>You must be logged in to see the potluck list and submit to it.</p>
                     </div>
                 }
-            </Container>
+            </div>
         );
     }
 }
