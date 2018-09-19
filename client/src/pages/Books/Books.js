@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-// import DeleteBtn from "../../components/DeleteBtn";
-import Jumbotron from "../../components/Jumbotron";
 // import API from "../../utils/API";
 // import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../../components/Grid";
-import { FormBtn } from "../../components/Form";
+// import { Col, Row, Container } from "../../components/Grid";
+// import { FormBtn } from "../../components/Form";
 // import { List, ListItem } from "../../components/List";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 import firebase, { auth, provider } from "../../Firebase";
@@ -64,10 +62,10 @@ class Signin extends Component {
                       Log Out
                     </Button>
                   ) : (
-                    <Button waves onClick={this.login}>
-                      Sign In
+                      <Button waves onClick={this.login}>
+                        Sign In
                     </Button>
-                  )}
+                    )}
 
                   <Button waves="light" node="a" href="/signin">
                     {" "}
@@ -80,8 +78,8 @@ class Signin extends Component {
                       </div>
                     </div>
                   ) : (
-                    <div className="wrapper" />
-                  )}
+                      <div className="wrapper" />
+                    )}
                 </div>
               </div>
               <Parallax imageSrc="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=de05b46a8ac91fcff2b134811e62d79f&auto=format&fit=crop&w=1000&q=80" />
