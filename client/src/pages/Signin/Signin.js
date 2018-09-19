@@ -8,74 +8,61 @@ import { FormBtn } from "../../components/Form";
 // import { List, ListItem } from "../../components/List";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 import firebase, { auth, provider } from "../../Firebase";
-
+import { row, Input, Icon, CardPanel } from "react-materialize";
 
 class Signin extends Component {
-    constructor() {
-        super();
-        this.state = {
-            user: null
-        };
-        this.login = this.login.bind(this);
-        this.logout = this.logout.bind(this);
+  constructor() {
+    super();
+    this.state = {
+      user: null
     };
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+  }
 
-    componentDidMount() {
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                this.setState({ user });
-            }
-        });
-    }
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
+  }
 
-    logout() {
-        auth.signOut()
-            .then(() => {
-                this.setState({
-                    user: null
-                });
-            });
-    }
+  logout() {
+    auth.signOut().then(() => {
+      this.setState({
+        user: null
+      });
+    });
+  }
 
-    login() {
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                const user = result.user;
-                this.setState({
-                    user
-                });
-            });
-    }
+  login() {
+    auth.signInWithPopup(provider).then(result => {
+      const user = result.user;
+      this.setState({
+        user
+      });
+    });
+  }
 
-
-    render() {
-        return (
-            <div className='app'>
-                <header>
-                    <div className="wrapper">
-                        <h1>Fun Food Friends</h1>
-                        {this.state.user ?
-                            <button onClick={this.logout}>Logout</button>
-                            :
-                            <button onClick={this.login}>Log In</button>
-                        }
-                    </div>
-                </header>
-                {this.state.user ?
-                    <div>
-                        <div className='user-profile'>
-                            <img src={this.state.user.photoURL} />
-                        </div>
-                    </div>
-                    :
-                    <div className='wrapper'>
-                        <p>You must be logged in to see the potluck list and submit to it.</p>
-                    </div>
-                }
-            </div>
-        );
-    }
+  render() {
+    return (
+      <Row>
+        <Input s={6} label="First Name" validate>
+          <Icon>account_circle</Icon>
+        </Input>
+        <Input s={6} label="Last Name" validate>
+          <Icon>account_circle</Icon>
+        </Input>
+        <Input s={6} label="Password" validate>
+          <Icon>lock</Icon>
+        </Input>
+        <Input s={6} label="Email" validate>
+          <Icon>contact_mail</Icon>
+        </Input>
+      </Row>
+    );
+  }
 }
-
 
 export default Signin;
