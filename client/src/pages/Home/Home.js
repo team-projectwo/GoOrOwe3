@@ -8,7 +8,7 @@ import React, { Component } from "react";
 import firebase, { auth, provider } from "../../Firebase";
 import { Parallax, Button } from "react-materialize";
 
-class Signin extends Component {
+class Home extends Component {
   constructor() {
     super();
     this.state = {
@@ -91,4 +91,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default Home;
