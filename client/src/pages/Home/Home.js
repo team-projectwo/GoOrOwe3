@@ -9,38 +9,19 @@ import firebase, { auth, provider } from "../../Firebase";
 import { Parallax, Button } from "react-materialize";
 
 class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: null
-    };
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
+  state = {
+    books: [],
+    title: "",
+    author: "",
+    synopsis: ""
+  };
+
+  login = () => {
+    this.props.login();
   }
 
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ user });
-      }
-    });
-  }
-
-  logout() {
-    auth.signOut().then(() => {
-      this.setState({
-        user: null
-      });
-    });
-  }
-
-  login() {
-    auth.signInWithPopup(provider).then(result => {
-      const user = result.user;
-      this.setState({
-        user
-      });
-    });
+  logout = () => {
+    this.props.logout();
   }
 
   render() {
@@ -57,29 +38,26 @@ class Home extends Component {
                     Keep Yourself and Your Friends Accountable. Hit The Gym or
                     Pay Up.
                   </p>
-                  {this.state.user ? (
-                    <Button waves onClick={this.logout}>
-                      Log Out
-                    </Button>
-                  ) : (
-                      <Button waves onClick={this.login}>
-                        Sign In
-                    </Button>
-                    )}
-
+                  {this.state.user ?
+                    <Button waves onClick={this.logout}>Log Out</Button>
+                    :
+                    <Button waves onClick={this.login}>Sign In</Button>
+                  }
                   <Button waves="light" node="a" href="/signin">
                     {" "}
                     Get Started{" "}
                   </Button>
-                  {this.state.user ? (
+                  {this.state.user ?
                     <div>
                       <div className="user-profile">
                         <img src={this.state.user.photoURL} />
                       </div>
                     </div>
-                  ) : (
-                      <div className="wrapper" />
-                    )}
+                    :
+                    <div className="wrapper" >
+                      <p>You must be logged in to see the potluck list and submit to it.</p>
+                    </div>
+                  }
                 </div>
               </div>
               <Parallax imageSrc="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=de05b46a8ac91fcff2b134811e62d79f&auto=format&fit=crop&w=1000&q=80" />
