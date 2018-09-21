@@ -38,7 +38,7 @@ class Home extends Component {
                     Keep Yourself and Your Friends Accountable. Hit The Gym or
                     Pay Up.
                   </p>
-                  {this.state.user ?
+                  {this.props.user ?
                     <Button waves onClick={this.logout}>Log Out</Button>
                     :
                     <Button waves onClick={this.login}>Sign In</Button>
@@ -47,10 +47,10 @@ class Home extends Component {
                     {" "}
                     Get Started{" "}
                   </Button>
-                  {this.state.user ?
+                  {this.props.user ?
                     <div>
                       <div className="user-profile">
-                        <img src={this.state.user.photoURL} />
+                        <img src={this.props.user.photoURL} />
                       </div>
                     </div>
                     :
