@@ -5,7 +5,7 @@ import React, { Component } from "react";
 // import { FormBtn } from "../../components/Form";
 // import { List, ListItem } from "../../components/List";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
-import firebase, { auth, provider } from "../../Firebase";
+// import firebase, { auth, provider } from "../../Firebase";
 import { Parallax, Button } from "react-materialize";
 
 class Home extends Component {
@@ -15,14 +15,6 @@ class Home extends Component {
     author: "",
     synopsis: ""
   };
-
-  login = () => {
-    this.props.login();
-  }
-
-  logout = () => {
-    this.props.logout();
-  }
 
   render() {
     return (
@@ -39,9 +31,9 @@ class Home extends Component {
                     Pay Up.
                   </p>
                   {this.props.user ?
-                    <Button waves onClick={this.logout}>Log Out</Button>
+                    <Button waves onClick={this.props.logout}>Log Out</Button>
                     :
-                    <Button waves onClick={this.login}>Sign In</Button>
+                    <Button waves onClick={this.props.login}>Sign In</Button>
                   }
                   <Button waves="light" node="a" href="/signin">
                     {" "}
