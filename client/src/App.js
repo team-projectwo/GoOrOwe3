@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
+import Groups from "./pages/Groups";
 // import Detail from "./pages/Detail";
 // import Signin from "./pages/Signin";
 // import NoMatch from "./pages/NoMatch";
@@ -54,7 +55,7 @@ class App extends Component {
               }
             }
             ></Route>
-            {/* <Route exact path="/books" component={Home} /> */}
+            <Route exact path="/groups" component={Groups} />
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route exact path="/signin" component={Signin} /> */}
           </Switch>
