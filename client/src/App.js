@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Groups from "./pages/Groups";
@@ -78,7 +78,6 @@ class App extends Component {
     });
   }
 
-
   render() {
     return (
       <Router>
@@ -90,7 +89,11 @@ class App extends Component {
               }
             }
             ></Route>
-            <Route exact path="/groups" component={Groups} />
+            <Route exact path="/groups" render={
+              () => {
+                return <Groups user={this.state.user} login={this.login} logout={this.logout} />
+              }
+            } ></Route>
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route exact path="/signin" component={Signin} /> */}
           </Switch>
@@ -98,6 +101,6 @@ class App extends Component {
       </Router>
     );
   }
-};
+}
 
 export default App;
