@@ -48,20 +48,17 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return (
-                  <Home
-                    user={this.state.user}
-                    login={this.login}
-                    logout={this.logout}
-                  />
-                );
-              }}
-            />
-            <Route exact path="/groups" component={Groups} />
+            <Route exact path="/" render={
+              () => {
+                return <Home user={this.state.user} login={this.login} logout={this.logout} />
+              }
+            }
+            ></Route>
+            <Route exact path="/groups" render={
+              () => {
+                return <Groups user={this.state.user} login={this.login} logout={this.logout} />
+              }
+            } ></Route>
             {/* <Route exact path="/books/:id" component={Detail} /> */}
             {/* <Route exact path="/signin" component={Signin} /> */}
           </Switch>
