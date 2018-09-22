@@ -6,7 +6,14 @@ import React, { Component } from "react";
 // import { List, ListItem } from "../../components/List";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
 // import firebase, { auth, provider } from "../../Firebase";
-import { Parallax, Button } from "react-materialize";
+import { Parallax } from "react-materialize";
+import Button from "@material-ui/core/Button";
+
+import "typeface-roboto";
+
+var Buttonstyle = {
+  marginLeft: "15px"
+};
 
 class Home extends Component {
   state = {
@@ -30,26 +37,44 @@ class Home extends Component {
                     Keep Yourself and Your Friends Accountable. Hit The Gym or
                     Pay Up.
                   </p>
-                  {this.props.user ?
-                    <Button waves onClick={this.props.logout}>Log Out</Button>
-                    :
-                    <Button waves onClick={this.props.login}>Sign In</Button>
-                  }
-                  <Button waves="light" node="a" href="/signin">
-                    {" "}
-                    Get Started{" "}
+                  {this.props.user ? (
+                    <Button
+                      onClick={this.props.logout}
+                      color="secondary"
+                      className={this.button}
+                      variant="outlined"
+                    >
+                      Log Out
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={this.props.login}
+                      color="secondary"
+                      className={this.button}
+                      variant="outlined"
+                    >
+                      Sign In
+                    </Button>
+                  )}
+                  <Button
+                    href="/groups"
+                    onClick={this.props.login}
+                    color="secondary"
+                    className={this.button}
+                    variant="outlined"
+                    style={Buttonstyle}
+                  >
+                    Get Started
                   </Button>
-                  {this.props.user ?
+                  {this.props.user ? (
                     <div>
                       <div className="user-profile">
                         <img src={this.props.user.photoURL} />
                       </div>
                     </div>
-                    :
-                    <div className="wrapper" >
-                      <p>You must be logged in to see the potluck list and submit to it.</p>
-                    </div>
-                  }
+                  ) : (
+                    <div className="wrapper" />
+                  )}
                 </div>
               </div>
               <Parallax imageSrc="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=de05b46a8ac91fcff2b134811e62d79f&auto=format&fit=crop&w=1000&q=80" />
