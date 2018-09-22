@@ -25,6 +25,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "if-env": "^1.0.4",
-    "mongoose": "^5.0.17"
+    "mongoose": "^5.0.17",
+    "react-materialize": "^2.4.5"
   }
 }

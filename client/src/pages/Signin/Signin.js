@@ -11,39 +11,39 @@ import firebase, { auth, provider } from "../../Firebase";
 import { Row, Input, Icon, CardPanel } from "react-materialize";
 
 class Signin extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: null
-    };
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     user: null
+  //   };
+  //   this.login = this.login.bind(this);
+  //   this.logout = this.logout.bind(this);
+  // }
 
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ user });
-      }
-    });
-  }
+  // componentDidMount() {
+  //   auth.onAuthStateChanged(user => {
+  //     if (user) {
+  //       this.setState({ user });
+  //     }
+  //   });
+  // }
 
-  logout() {
-    auth.signOut().then(() => {
-      this.setState({
-        user: null
-      });
-    });
-  }
+  // logout() {
+  //   auth.signOut().then(() => {
+  //     this.setState({
+  //       user: null
+  //     });
+  //   });
+  // }
 
-  login() {
-    auth.signInWithPopup(provider).then(result => {
-      const user = result.user;
-      this.setState({
-        user
-      });
-    });
-  }
+  // login() {
+  //   auth.signInWithPopup(provider).then(result => {
+  //     const user = result.user;
+  //     this.setState({
+  //       user
+  //     });
+  //   });
+  // }
 
   render() {
     return (
