@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 // import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 // import { Col, Row, Container } from "../../components/Grid";
@@ -32,10 +33,11 @@ class Home extends Component {
                   </p>
                   {this.props.user ?
                     <Button waves onClick={this.props.logout}>Log Out</Button>
+
                     :
                     <Button waves onClick={this.props.login}>Sign In</Button>
                   }
-                  <Button waves="light" node="a" href="/signin">
+                  <Button waves="light" node="a" href="/groups">
                     {" "}
                     Get Started{" "}
                   </Button>
