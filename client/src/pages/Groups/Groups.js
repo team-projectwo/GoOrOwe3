@@ -23,20 +23,20 @@ class Groups extends Component {
         numberofParticipants: "",
         duration: "",
         totalPot: ""
-      };
+    };
 
     componentDidMount() {
-    this.loadGroups();
+        this.loadGroups();
     }
-      
+
 
     loadGroups = () => {
         API.getGroups()
-          .then(res =>
-            this.setState({ groups: res.data, title: "", info: "", buyIn: "", numberofParticipants: "", duration: "", totalPot: "" })
-          )
-          .catch(err => console.log(err));
-      };
+            .then(res =>
+                this.setState({ groups: res.data, title: "", info: "", buyIn: "", numberofParticipants: "", duration: "", totalPot: "" })
+            )
+            .catch(err => console.log(err));
+    };
 
     renderGroups = () => {
         <Group></Group>
@@ -45,33 +45,33 @@ class Groups extends Component {
     render() {
         return (
             <div>
-                    <div style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }} className="jumbotron">
+                <div style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }} className="jumbotron">
 
-                        <h1>Groups</h1>
+                    <h1>Groups</h1>
 
-                    </div>
-                    <div>
-                            {this.state.groups.length ? (
-                                <ul>
-                                    {this.state.groups.map(group => (
-                                        <Group title= {group.title}>
-                                                <ul key={group._id}>
-                                                    <a href={"/groups/" + group._id}>
-                                                        <strong>
-                                                        Buy In: ${group.buyIn}, Total Pot: ${group.totalPot}
-                                                        </strong>
-                                                    </a>
-                                                    {/* <DeleteBtn onClick={() => this.deleteGroup(group._id)} /> */}
-                                                </ul>
-                                        </Group>
-                                    ))}
-                                </ul>
-                            ) : (
-                                 <h3>No Results to Display</h3>
-                            )}
-                            
+                </div>
+                <div>
+                    {this.state.groups.length ? (
+                        <ul>
+                            {this.state.groups.map(group => (
+                                <Group title={group.title}>
+                                    <ul key={group._id}>
+                                        <a href={"/groups/" + group._id}>
+                                            <strong>
+                                                Buy In: ${group.buyIn}, Total Pot: ${group.totalPot}
+                                            </strong>
+                                        </a>
+                                        {/* <DeleteBtn onClick={() => this.deleteGroup(group._id)} /> */}
+                                    </ul>
+                                </Group>
+                            ))}
+                        </ul>
+                    ) : (
+                            <h3>No Results to Display</h3>
+                        )}
 
-                    </div>
+
+                </div>
 
                 <div>
                     {this.props.user ?
