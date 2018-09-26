@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 3001;
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 app.use(require("body-parser").text());
 
+db = require("./models")
+
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -18,7 +20,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/goOrOwe_db");
+
 
 // Stripe API
 app.post("/charge", async (req, res) => {

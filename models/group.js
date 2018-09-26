@@ -3,10 +3,13 @@ const Schema = mongoose.Schema;
 
 const groupSchema = new Schema({
   title: { type: String, required: true, unique: true },
-  // looking into 
   duration: { type: String, required: true },
   info: String,
-  date: { type: Date, default: Date.now }
+  buyIn: Number,
+  numberOfParticipants: Number,
+  totalPot: Number,
+  // totalPot: this.buyIn * this.numberOfParticipants,
+  dateCreated: { type: Date, default: Date.now }
 });
 
 const Group = mongoose.model("Group", groupSchema);

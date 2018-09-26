@@ -1,3 +1,4 @@
 module.exports = {
-  Group: require("./group")
+  Group: require("./group"),
+  User: require("./user")
 };

@@ -9,8 +9,10 @@ class Group extends Component {
     render() {
         return (
             <Col m={6} s={12}>
-                <Card className='blue-grey darken-1' textClassName='white-text' title={this.props.groups[0].groupOne[0]} actions={[<a href='/join'><Button waves>Join</Button></a>]}>
-                    <div>{this.props.groups[0].groupOne[1]}</div>
+                <Card className='blue-grey darken-1' textClassName='white-text' title={this.props.title} actions={[<a href='#'><Button waves>Join</Button></a>]}>
+                    <div>
+                        {this.props.children}
+                    </div>
                 </Card>
             </Col>
         )

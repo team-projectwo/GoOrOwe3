@@ -4,11 +4,13 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "axios": "^0.16.2",
+    "firebase": "^5.5.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14",
+    "react-materialize": "^2.4.5",
     "react-router-dom": "^4.1.2",
-    "axios": "^0.16.2"
+    "react-scripts": "1.0.14"
   },
   "scripts": {
     "start": "react-scripts start",

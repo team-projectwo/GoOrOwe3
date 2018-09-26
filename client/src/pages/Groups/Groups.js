@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Parallax, Button, Row, Col, Card, CardTitle, Footer } from "react-materialize";
 import Group from "../../components/Group";
+import API from "../../utils/API";
+
 
 var FooterStyle = {
     position: "absolute",
@@ -10,54 +12,71 @@ var FooterStyle = {
 }
 
 class Groups extends Component {
+    // state = {
+    //     group: null
+    // };
     state = {
-        groups: [
-            {
-                groupOne: ["Fitbit", "Info about fitbit"]
-            },
-            {
-                groupTwo: ["Vasa", "Info about Vasa"]
-            }
-        ]
-
+        groups: [],
+        title: "",
+        info: "",
+        buyIn: "",
+        numberofParticipants: "",
+        duration: "",
+        totalPot: ""
     };
 
     componentDidMount() {
-        // API Call
-        // setState group array
+        this.loadGroups();
+    }
 
 
-    };
-
-    renderGroups() {
-        return this.state.groups.map(group => {
-            return (
-                <Group groups={this.state.groups}></Group>
+    loadGroups = () => {
+        API.getGroups()
+            .then(res =>
+                this.setState({ groups: res.data, title: "", info: "", buyIn: "", numberofParticipants: "", duration: "", totalPot: "" })
             )
-        })
-
-        // return (
-        //     <div>
-
-        //         <Group >
-        //         </Group >
-        //         <Group>
-        //         </Group>
-        //         <Group>
-        //         </Group>
-        //     </div>
-        // )
+            .catch(err => console.log(err));
     };
 
+    renderGroups = () => {
+        <Group></Group>
+    }
 
     render() {
         return (
             <div>
-                {this.renderGroups()}
+                <div style={{ height: 300, clear: "both", paddingTop: 120, textAlign: "center" }} className="jumbotron">
+
+                    <h1>Groups</h1>
+
+                </div>
+                <div>
+                    {this.state.groups.length ? (
+                        <ul>
+                            {this.state.groups.map(group => (
+                                <Group title={group.title}>
+                                    <ul key={group._id}>
+                                        <a href={"/groups/" + group._id}>
+                                            <strong>
+                                                Buy In: ${group.buyIn}, Total Pot: ${group.totalPot}
+                                            </strong>
+                                        </a>
+                                        {/* <DeleteBtn onClick={() => this.deleteGroup(group._id)} /> */}
+                                    </ul>
+                                </Group>
+                            ))}
+                        </ul>
+                    ) : (
+                            <h3>No Results to Display</h3>
+                        )}
+
+
+                </div>
+
                 <div>
                     {this.props.user ?
                         <Footer style={FooterStyle}>
-                            <row>
+                            <Row>
                                 <Col>
                                     <div>
                                         <Button waves='light' node='a' href='/mygroups'>My Groups</Button>
@@ -68,7 +87,7 @@ class Groups extends Component {
                                         <Button waves='light' node='a' href='/account'>Account</Button>
                                     </div>
                                 </Col>
-                            </row>
+                            </Row>
                         </Footer>
 
                         :

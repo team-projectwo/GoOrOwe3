@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Groups from "./pages/Groups";
 import Join from "./pages/Join";
+import API from "./utils/API";
 // import Detail from "./pages/Detail";
 // import Signin from "./pages/Signin";
 // import NoMatch from "./pages/NoMatch";
@@ -23,9 +24,27 @@ class App extends Component {
 
   componentDidMount() {
     auth.onAuthStateChanged(user => {
-      if (user) {
-        this.setState({ user });
+      console.log(user);
+      if (!(!user && typeof user === "object")) {
+        var userEmail = {
+          email: user.email
+        }
+        API.getUserByEmail(userEmail).then((res) => {
+          console.log(res);
+          this.setState({
+            user: res.data[0]
+          });
+        })
+
       }
+
+      //how to properly check for null values
+      // if ( !(!user && typeof user === "object") ) {
+
+      //   this.setState({
+      //     user: user
+      //   });
+      // }
     });
   }
 
@@ -39,10 +58,26 @@ class App extends Component {
 
   login() {
     auth.signInWithPopup(provider).then(result => {
-      const user = result.user;
-      this.setState({
-        user
-      });
+      ///result.user;
+      const user = {}
+      user.displayName = result.user.displayName
+      user.email = result.user.email
+      user.uid = result.user.uid
+      user.emailVerified = result.user.emailVerified
+      user.photoURL = result.user.photoURL
+      console.log(user);
+      // /api/user/signin
+      API.createUser(user).then((res) => {
+        console.log(res);
+        this.setState({
+          user: res.data
+        });
+      }).catch((err) => {
+        if (err) {
+          console.log("If error 422 is above this console.log() dont trip that user probably exists in your db already and unique clause stopped it from duplication --Ryan B");
+        }
+      })
+
     });
   }
 

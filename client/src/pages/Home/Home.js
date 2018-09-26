@@ -10,10 +10,11 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import { Parallax } from "react-materialize";
 import Button from "@material-ui/core/Button";
 
-import "typeface-roboto";
+import "typeface-montserrat";
 
 var Buttonstyle = {
-  marginLeft: "15px"
+  marginLeft: "15px",
+  fontFamily: "montserrat"
 };
 
 class Home extends Component {
@@ -33,8 +34,13 @@ class Home extends Component {
               <Parallax imageSrc="https://images.unsplash.com/photo-1506197061617-7f5c0b093236?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=418764a3f148dde8a8debcea492f9156&auto=format&fit=crop&w=900&q=80" />
               <div className="section white">
                 <div className="row container">
-                  <h2 className="header">Go Or Owe</h2>
-                  <p className="grey-text text-darken-3 lighten-3">
+                  <h2 style={Buttonstyle} className="header">
+                    Go Or Owe
+                  </h2>
+                  <p
+                    style={Buttonstyle}
+                    className="grey-text text-darken-3 lighten-3"
+                  >
                     Keep Yourself and Your Friends Accountable. Hit The Gym or
                     Pay Up.
                   </p>
@@ -47,7 +53,7 @@ class Home extends Component {
                       color="secondary"
                       className={this.button}
                       variant="outlined"
-
+                      style={Buttonstyle}
                     >
                       Log Out
                     </Button>
@@ -58,7 +64,7 @@ class Home extends Component {
                         color="secondary"
                         className={this.button}
                         variant="outlined"
-                        href
+                        style={Buttonstyle}
                       >
                         Sign In
                     </Button>
