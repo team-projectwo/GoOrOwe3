@@ -13,8 +13,6 @@ class Group extends Component {
                     <div>{this.props.groups[0].groupOne[1]}</div>
                 </Card>
             </Col>
-
-
         )
     }
 }
