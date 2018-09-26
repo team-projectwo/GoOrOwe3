@@ -10,21 +10,50 @@ var FooterStyle = {
 }
 
 class Groups extends Component {
-    // state = {
-    //     group: null
-    // };
+    state = {
+        groups: [
+            {
+                groupOne: ["Fitbit", "Info about fitbit"]
+            },
+            {
+                groupTwo: ["Vasa", "Info about Vasa"]
+            }
+        ]
+
+    };
+
+    componentDidMount() {
+        // API Call
+        // setState group array
+
+
+    };
+
+    renderGroups() {
+        return this.state.groups.map(group => {
+            return (
+                <Group groups={this.state.groups}></Group>
+            )
+        })
+
+        // return (
+        //     <div>
+
+        //         <Group >
+        //         </Group >
+        //         <Group>
+        //         </Group>
+        //         <Group>
+        //         </Group>
+        //     </div>
+        // )
+    };
+
 
     render() {
         return (
             <div>
-                <div>
-                    <Group>
-                    </Group>
-                    <Group>
-                    </Group>
-                    <Group>
-                    </Group>
-                </div>
+                {this.renderGroups()}
                 <div>
                     {this.props.user ?
                         <Footer style={FooterStyle}>

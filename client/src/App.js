@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Groups from "./pages/Groups";
+import Join from "./pages/Join";
 // import Detail from "./pages/Detail";
 // import Signin from "./pages/Signin";
 // import NoMatch from "./pages/NoMatch";
 // import Nav from "./components/Nav";
 import firebase, { auth, provider } from "../src/Firebase";
+import { Elements, StripeProvider } from 'react-stripe-elements';
+import CheckoutForm from './components/Checkout/CheckoutForm';
 
 class App extends Component {
   constructor() {
@@ -45,25 +48,29 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div>
-          <Switch>
-            <Route exact path="/" render={
-              () => {
-                return <Home user={this.state.user} login={this.login} logout={this.logout} />
+      <div>
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path="/" render={
+                () => {
+                  return <Home user={this.state.user} login={this.login} logout={this.logout} />
+                }
               }
-            }
-            ></Route>
-            <Route exact path="/groups" render={
-              () => {
-                return <Groups user={this.state.user} login={this.login} logout={this.logout} />
-              }
-            } ></Route>
-            {/* <Route exact path="/books/:id" component={Detail} /> */}
-            {/* <Route exact path="/signin" component={Signin} /> */}
-          </Switch>
-        </div>
-      </Router>
+              ></Route>
+              <Route exact path="/groups" render={
+                () => {
+                  return <Groups user={this.state.user} login={this.login} logout={this.logout} />
+                }
+              } ></Route>
+              <Route exact path="/join" component={Join} />
+              {/* <Route exact path="/signin" component={Signin} /> */}
+            </Switch>
+          </div>
+        </Router>
+
+      </div>
+
     );
   }
 }

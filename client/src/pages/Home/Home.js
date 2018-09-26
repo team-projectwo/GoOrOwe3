@@ -38,28 +38,34 @@ class Home extends Component {
                     Keep Yourself and Your Friends Accountable. Hit The Gym or
                     Pay Up.
                   </p>
+                  {/* {this.props.user ? <Redirect to="/groups" /> : null} */}
+
+
                   {this.props.user ? (
                     <Button
                       onClick={this.props.logout}
                       color="secondary"
                       className={this.button}
                       variant="outlined"
+
                     >
                       Log Out
                     </Button>
+
                   ) : (
-                    <Button
-                      onClick={this.props.login}
-                      color="secondary"
-                      className={this.button}
-                      variant="outlined"
-                    >
-                      Sign In
+                      <Button
+                        onClick={this.props.login}
+                        color="secondary"
+                        className={this.button}
+                        variant="outlined"
+                        href
+                      >
+                        Sign In
                     </Button>
-                  )}
+
+                    )}
                   <Button
                     href="/groups"
-                    onClick={this.props.login}
                     color="secondary"
                     className={this.button}
                     variant="outlined"
@@ -74,8 +80,8 @@ class Home extends Component {
                       </div>
                     </div>
                   ) : (
-                    <div className="wrapper" />
-                  )}
+                      <div className="wrapper" />
+                    )}
                 </div>
               </div>
               <Parallax imageSrc="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=de05b46a8ac91fcff2b134811e62d79f&auto=format&fit=crop&w=1000&q=80" />
