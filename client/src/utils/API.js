@@ -13,9 +13,9 @@ export default {
   deleteBook: function(id) {
     return axios.delete("/api/books/" + id);
   },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
+  // Saves a group to the database
+  saveGroup: function(groupData) {
+    return axios.post("/api/groups", groupData);
   },
   createUser: function (user){
     console.log(user);

@@ -56,6 +56,7 @@ class Home extends Component {
                     </Button>
                   ) : (
                     <Button
+                      href="/signin"
                       onClick={this.props.login}
                       color="secondary"
                       className={this.button}
