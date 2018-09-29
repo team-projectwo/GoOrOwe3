@@ -5,7 +5,7 @@ const groupSchema = new Schema({
   title: { type: String, required: true, unique: true },
   duration: { type: String, required: true },
   info: String,
-  buyIn: Number,
+  buyIn: { type: Number, required: true },
   numberOfParticipants: Number,
   totalPot: Number,
   // totalPot: this.buyIn * this.numberOfParticipants,

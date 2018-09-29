@@ -32,6 +32,7 @@
     "react-stripe-elements": "^2.0.1",
     "stripe": "^6.12.1",
     "typeface-montserrat": "0.0.54",
-    "typeface-roboto": "0.0.54"
+    "typeface-roboto": "0.0.54",
+    "yarn": "^1.10.1"
   }
 }
