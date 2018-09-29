@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Parallax, Button, Row, Col, Card, CardTitle, Footer } from "react-materialize";
-import Group from "../../components/Group/Group";
+import { Parallax, Button, Row, Col, CardTitle, Footer } from "react-materialize";
+import Card from "../../components/Card/Card";
 import API from "../../utils/API";
 import { Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
@@ -26,9 +26,7 @@ var FooterStyle = {
 }
 
 class Groups extends Component {
-    // state = {
-    //     group: null
-    // };
+  
     state = {
         groups: [],
         title: "",
@@ -77,7 +75,7 @@ class Groups extends Component {
             buyIn: parseInt(this.state.buyIn),
             duration: this.state.duration,
             info: this.state.info,
-            numberOfParticipants: this.state.numberOfParticipants + 1,
+            numberOfParticipants: this.state.numberOfParticipants,
             totalPot: parseInt(this.state.buyIn) * parseInt(this.state.numberOfParticipants)
           })
             .then(res => this.loadGroups())
@@ -85,10 +83,6 @@ class Groups extends Component {
             // console.log("===================", "after laod groups call")
         }
       };
-
-    renderGroups = () => {
-        <Group></Group>
-    }
 
     render() {
         return (
@@ -101,16 +95,20 @@ class Groups extends Component {
                             {this.state.groups.length ? (
                                 <ul>
                                     {this.state.groups.map(group => (
-                                        <Group title= {group.title}>
+                                        <Card title= {group.title} _id= {group._id}>
                                                 <ul key={group._id}>
                                                     <a href={"/groups/" + group._id}>
                                                         <strong>
-                                                        Buy In: ${group.buyIn}, Total Pot: ${group.totalPot}
+                                                        Buy In: ${group.buyIn} 
+                                                        <br/>
+                                                        Total Pot: ${group.totalPot}
+                                                        <br/>
+                                                        Participants: {group.numberOfParticipants}
                                                         </strong>
                                                     </a>
                                                     {/* <DeleteBtn onClick={() => this.deleteGroup(group._id)} /> */}
                                                 </ul>
-                                        </Group>
+                                        </Card>
                                     ))}
                                 </ul>
                             ) : (

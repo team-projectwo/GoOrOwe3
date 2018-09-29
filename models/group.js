@@ -9,7 +9,8 @@ const groupSchema = new Schema({
   numberOfParticipants: Number,
   totalPot: Number,
   // totalPot: this.buyIn * this.numberOfParticipants,
-  dateCreated: { type: Date, default: Date.now }
+  dateCreated: { type: Date, default: Date.now },
+  partipants: {}
 });
 
 const Group = mongoose.model("Group", groupSchema);

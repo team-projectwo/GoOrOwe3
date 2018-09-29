@@ -6,7 +6,7 @@ export default {
     return axios.get("/api/groups");
   },
   // Gets the book with the given id
-  getGroup: function(id) {
+  getGroupById: function(id) {
     return axios.get("/api/groups/" + id);
   },
   // Deletes the book with the given id
