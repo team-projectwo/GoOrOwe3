@@ -8,6 +8,9 @@ var config = {
     storageBucket: "go-or-owe-38440.appspot.com",
     messagingSenderId: "111812110386"
 };
+
+
+
 // Initialize Firebase
 firebase.initializeApp(config);
 export const provider = new firebase.auth.GoogleAuthProvider();

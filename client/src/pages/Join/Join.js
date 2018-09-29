@@ -10,7 +10,7 @@ class Join extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div id="firebaseui-auth-container" className="container">
                 <div className="row">
 
                     <div className="col s12">
