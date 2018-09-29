@@ -11,6 +11,9 @@ import API from "./utils/API";
 import firebase, { auth, provider } from "../src/Firebase";
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import CheckoutForm from './components/Checkout/CheckoutForm';
+import * as firebaseui from 'firebaseui'
+
+
 
 class App extends Component {
   constructor() {
@@ -99,7 +102,6 @@ class App extends Component {
                 }
               } ></Route>
               <Route exact path="/join" component={Join} />
-              {/* <Route exact path="/signin" component={Signin} /> */}
             </Switch>
           </div>
         </Router>
