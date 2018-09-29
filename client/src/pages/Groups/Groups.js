@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Parallax, Button, Row, Col, Card, CardTitle, Footer } from "react-materialize";
-import Group from "../../components/Group";
+import Group from "../../components/Group/Group";
 import API from "../../utils/API";
 
 
