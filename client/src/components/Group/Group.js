@@ -9,14 +9,12 @@ class Group extends Component {
     render() {
         return (
             <Col m={6} s={12}>
-                <Card className='blue-grey darken-1' textClassName='white-text' title= {this.props.title} actions={[<a href='#'><Button waves>Join</Button></a>]}>
+                <Card className='blue-grey darken-1' textClassName='white-text' title={this.props.title} actions={[<a href='#'><Button waves>Join</Button></a>]}>
                     <div>
-                    {this.props.children}
+                        {this.props.children}
                     </div>
                 </Card>
             </Col>
-
-
         )
     }
 }

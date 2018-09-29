@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Parallax, Button, Row, Col, Card, CardTitle, Footer } from "react-materialize";
-import Group from "../../components/Group";
+import Group from "../../components/Group/Group";
 import API from "../../utils/API";
 import { Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
@@ -39,10 +39,11 @@ class Groups extends Component {
         totalPot: 0
       };
 
+
     componentDidMount() {
-    this.loadGroups();
+        this.loadGroups();
     }
-      
+
 
     loadGroups = () => {
         API.getGroups()
