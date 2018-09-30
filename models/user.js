@@ -8,7 +8,8 @@ var UserSchema = new Schema({
   email: { type: String, required: true, unique: true },
   emailVerified: { type: Boolean, required: true },
   date: { type: Date, default: Date.now },
-  photoURL: { type: String, required: false }
+  photoURL: { type: String, required: false },
+  joinedGroups: {}
 });
 
 const User = mongoose.model("User", UserSchema);
