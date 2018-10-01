@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 // import API from "../../utils/API";
 // import { Link } from "react-router-dom";
 // import { Col, Row, Container } from "../../components/Grid";
@@ -46,7 +51,6 @@ class Home extends Component {
                   </p>
                   {/* {this.props.user ? <Redirect to="/groups" /> : null} */}
 
-
                   {this.props.user ? (
                     <Button
                       onClick={this.props.logout}
@@ -57,19 +61,17 @@ class Home extends Component {
                     >
                       Log Out
                     </Button>
-
                   ) : (
-                      <Button
-                        onClick={this.props.login}
-                        color="secondary"
-                        className={this.button}
-                        variant="outlined"
-                        style={Buttonstyle}
-                      >
-                        Sign In
+                    <Button
+                      onClick={this.props.login}
+                      color="secondary"
+                      className={this.button}
+                      variant="outlined"
+                      style={Buttonstyle}
+                    >
+                      Sign In
                     </Button>
-
-                    )}
+                  )}
                   <Button
                     href="/groups"
                     color="secondary"
@@ -86,11 +88,11 @@ class Home extends Component {
                       </div>
                     </div>
                   ) : (
-                      <div className="wrapper" />
-                    )}
+                    <div className="wrapper" />
+                  )}
                 </div>
               </div>
-              <Parallax imageSrc="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=de05b46a8ac91fcff2b134811e62d79f&auto=format&fit=crop&w=1000&q=80" />
+              <Parallax imageSrc="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=de05b46a8ac91fcff2b134811e62d79f&auto=format&fit=crop&w=1789&q=80" />
             </div>
           </div>
         </header>
