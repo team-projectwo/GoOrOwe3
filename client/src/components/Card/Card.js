@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Parallax, Button, Row, Col, CardTitle } from "react-materialize";
+import {Link} from "react-router-dom"
 
 var cardStyle = {
     // display: 'flex',
@@ -22,7 +23,7 @@ class Card extends Component {
                     <h3>{this.props.children}</h3>
 
                     <div className="card-action">
-                        <a href={'/groups/' + this.props._id}><Button className="btn-large" waves>See Group</Button></a>
+                        <Link to={'/join/group/' + this.props._id}><Button waves="light">See Group</Button></Link>
                     </div>
                 </div>
             </Col>

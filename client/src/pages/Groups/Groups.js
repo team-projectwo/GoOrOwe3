@@ -107,45 +107,39 @@ class Groups extends Component {
     render() {
         return (
             <Container fluid>
-                <div className="row">
-                    <div className="col s12 center-align">
-                        <h1>Groups</h1>
-                        <a className="btn-floating btn-small z-depth-5 waves-effect waves-light blue-grey darken-3" style={groupButtonStyle}>
-                            <i className="material-icons">add</i></a>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className='col s12 center-align'>
-
-                        {this.state.groups.length ? (
-                            <ul>
-                                {this.state.groups.map(group => (
-
-                                    <Card title={group.title} _id={group._id}>
-                                        <ul key={group._id}>
-                                            <a href={"/groups/" + group._id}>
-                                                <strong>
-                                                    Buy In: ${group.buyIn}
-                                                    <br />
-                                                    Total Pot: ${group.totalPot}
-                                                    <br />
-                                                    Participants: {group.numberOfParticipants}
-                                                </strong>
-                                            </a>
-                                            {/* <DeleteBtn onClick={() => this.deleteGroup(group._id)} /> */}
-                                        </ul>
-                                    </Card>
-
-                                ))}
-                            </ul>
-                        ) : (
+                <Row>
+                    <Col className='col s6 center-align'>
+                        <Jumbotron>
+                            <h1>Groups to Join</h1>
+                        </Jumbotron>
+                            {this.state.groups.length ? (
+                                <ul>
+                                    {this.state.groups.map(group => (
+                                        <Card key={group._id} title= {group.title} _id= {group._id}>
+                                                <ul key={group._id}>
+                                                    <a href={"/groups/" + group._id}>
+                                                        <strong>
+                                                        Buy In: ${group.buyIn} 
+                                                        <br/>
+                                                        Total Pot: ${group.totalPot}
+                                                        <br/>
+                                                        Participants: {group.numberOfParticipants}
+                                                        </strong>
+                                                    </a>
+                                                    {/* <DeleteBtn onClick={() => this.deleteGroup(group._id)} /> */}
+                                                </ul>
+                                        </Card>
+                                    ))}
+                                </ul>
+                            ) : (
                                 <h3>No Results to Display</h3>
                             )}
-                    </div>
-                </div>
+                    </Col>
+                    <Col className='col s6 center-align'>
+                        <Jumbotron>
+                            <h1>Create a Group</h1>
+                        </Jumbotron>
 
-                <div className='col s6'>
-                    {this.state.createGroupFunction ? (
                         <form>
                             <Input
                                 value={this.state.title}
@@ -175,51 +169,47 @@ class Groups extends Component {
                                 disabled={!(this.state.buyIn && this.state.title && this.state.duration)}
                                 onClick={this.handleFormSubmit}
                             >
-                                Submit Groups
+                                Submit Group
                             </FormBtn>
-                        </form>
-
-                    ) : (
-                            ""
-                        )}
-                </div>
-
+                        </form>       
+                    </Col>
+                </Row>
                 <div>
                     {this.props.user ?
                         <Footer className='center-align' style={FooterStyle}>
-                            <div className="row">
-                                <div className="col">
+                            <Row>
+                                <Col>
                                     <div>
                                         <Button waves='light' node='a' href='/mygroups'>My Groups</Button>
                                     </div>
-                                </div>
-                                <div className="col">
+                                </Col>
+                                <Col>
                                     <div>
                                         <Button waves='light' node='a' href='/account'>Account</Button>
                                     </div>
-                                </div>
-                            </div>
+                                </Col>
+                            </Row>
                         </Footer>
 
                         :
 
                         <Footer style={FooterStyle}>
-                            <div className="row">
-                                <div className="col">
+                            <Row>
+                                <Col>
                                     <div>
                                         <Button waves='light' node='a' href='/'>Home</Button>
                                     </div>
-                                </div>
-                                <div className="col">
+                                </Col>
+                                <Col>
                                     <div>
                                         <Button waves='light' node='a' href='/signin'>Sign In</Button>
                                     </div>
-                                </div>
-                            </div>
+                                </Col>
+                            </Row>
                         </Footer>
                     }
                 </div>
-            </Container >
+            </Container>
         )
     }
 }

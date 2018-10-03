@@ -15,6 +15,9 @@ router
   .put(groupsController.update)
   .delete(groupsController.remove);
 
+  router
+  .route("/addUser")
+  .post(groupsController.addUserToGroup)
 // For sign in?
 // router
 // .route("/signin")
