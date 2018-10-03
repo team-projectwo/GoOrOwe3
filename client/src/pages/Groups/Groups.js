@@ -11,13 +11,22 @@ import { CLIENT_RENEG_LIMIT } from 'tls';
 
 
 var FooterStyle = {
-    display: 'flex',
-    minHeight: '100px',
-    flexDirection: 'column',
-    flex: '1 0 auto'
+    // display: 'flex',
+    minHeight: '200px',
+    // flexDirection: 'column',
+    // flex: '1 0 auto',
+    position: 'absolute',
+    bottom: 0,
+    width: '100%'
 
 }
-  
+
+var groupButtonStyle = {
+    display: 'flex',
+    position: 'fixed',
+    margin: '-80 -150 -300 580',
+}
+
 {
     // position: "absolute",
     // left: 0,
@@ -26,17 +35,28 @@ var FooterStyle = {
 }
 
 class Groups extends Component {
-  
-    state = {
-        groups: [],
-        title: "",
-        info: "",
-        buyIn: 0,
-        numberOfParticipants: 0,
-        duration: "",
-        totalPot: 0
-      };
+    constructor() {
+        super();
+        this.state = {
+            groups: [],
+            title: "",
+            info: "",
+            buyIn: 0,
+            numberOfParticipants: 0,
+            duration: "",
+            totalPot: 0,
+            createGroup: false
+        };
 
+        // this.createGroupFunction = this.createGroupFunction.bind(this);
+
+    }
+
+    // createGroupFunction() {
+    //     this.setState(state => ({
+    //         createGroup: true
+    //     }));
+    // }
 
     componentDidMount() {
         this.loadGroups();
@@ -45,44 +65,44 @@ class Groups extends Component {
 
     loadGroups = () => {
         API.getGroups()
-          .then(res => {  
-            // console.log(typeof(this.state.title))
-            // console.log(typeof(this.state.buyIn))
-            // console.log(typeof(this.state.duration))
-            // console.log(typeof(this.state.info))
-            // console.log(typeof(this.state.numberOfParticipants))
-            // console.log(typeof(this.state.totalPot))          
-            this.setState({ groups: res.data, title: "", info: "", buyIn: "", numberOfParticipants: this.state.numberOfParticipants + 1, duration: "", totalPot: "" })
-          }
-   
-          )
-          .catch(err => console.log(err));
-      };
+            .then(res => {
+                // console.log(typeof(this.state.title))
+                // console.log(typeof(this.state.buyIn))
+                // console.log(typeof(this.state.duration))
+                // console.log(typeof(this.state.info))
+                // console.log(typeof(this.state.numberOfParticipants))
+                // console.log(typeof(this.state.totalPot))          
+                this.setState({ groups: res.data, title: "", info: "", buyIn: "", numberOfParticipants: this.state.numberOfParticipants + 1, duration: "", totalPot: "" })
+            }
 
-      handleInputChange = event => {
+            )
+            .catch(err => console.log(err));
+    };
+
+    handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
+    };
 
-      handleFormSubmit = event => {
+    handleFormSubmit = event => {
         event.preventDefault();
         // console.log(this.state.numberOfParticipants)
         if (this.state.buyIn && this.state.title && this.state.duration) {
-          API.saveGroup({
-            title: this.state.title,
-            buyIn: parseInt(this.state.buyIn),
-            duration: this.state.duration,
-            info: this.state.info,
-            numberOfParticipants: this.state.numberOfParticipants,
-            totalPot: parseInt(this.state.buyIn) * parseInt(this.state.numberOfParticipants)
-          })
-            .then(res => this.loadGroups())
-            .catch(err => console.log(err));
+            API.saveGroup({
+                title: this.state.title,
+                buyIn: parseInt(this.state.buyIn),
+                duration: this.state.duration,
+                info: this.state.info,
+                numberOfParticipants: this.state.numberOfParticipants,
+                totalPot: parseInt(this.state.buyIn) * parseInt(this.state.numberOfParticipants)
+            })
+                .then(res => this.loadGroups())
+                .catch(err => console.log(err));
             // console.log("===================", "after laod groups call")
         }
-      };
+    };
 
     render() {
         return (
@@ -95,7 +115,7 @@ class Groups extends Component {
                             {this.state.groups.length ? (
                                 <ul>
                                     {this.state.groups.map(group => (
-                                        <Card title= {group.title} _id= {group._id}>
+                                        <Card key={group._id} title= {group.title} _id= {group._id}>
                                                 <ul key={group._id}>
                                                     <a href={"/groups/" + group._id}>
                                                         <strong>
