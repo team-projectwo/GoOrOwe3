@@ -1,12 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Parallax, Button, Row, Col, Card, CardTitle } from "react-materialize";
 import CheckoutForm from "../../components/Checkout/CheckoutForm";
-import { Elements, StripeProvider } from 'react-stripe-elements';
+import {
+  Elements,
+  StripeProvider,
+  CardElement,
+  injectStripe
+} from "react-stripe-elements";
 import API from "../../utils/API";
 import { Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron"
 import {Link} from "react-router-dom";
+import Jumbotron from "../../components/Jumbotron";
+import "../../../src/pages/Join/join.css";
 
+class _CardForm extends React.Component {
+  render() {
+    return (
+      <form
+        onSubmit={() =>
+          this.props.stripe.createToken().then(payload => console.log(payload))
+        }
+      >
+        <CardElement />
+        <button>Pay</button>
+      </form>
+    );
+  }
+}
+
+injectStripe(CheckoutForm);
 
 class Join extends Component {
     state = {
@@ -46,7 +68,7 @@ class Join extends Component {
                     <div className="row">
                         users here
 
-                        <Button waves="light" onClick={this.joinGroup}>See Group</Button>
+                        <Button waves="light" onClick={this.joinGroup}>Join Group</Button>
                     </div>
                     <Container fluid>
                         <Row>
