@@ -4,7 +4,8 @@ import CheckoutForm from "../../components/Checkout/CheckoutForm";
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import API from "../../utils/API";
 import { Container } from "../../components/Grid";
-import Jumbotron from "../../components/Jumbotron";
+import Jumbotron from "../../components/Jumbotron"
+import {Link} from "react-router-dom";
 
 
 class Join extends Component {
@@ -13,11 +14,28 @@ class Join extends Component {
     };
 
     componentDidMount() {
-        API.getGroupById(this.props.match.params.id)
-            .then(res => this.setState({ group: res.data }))
+        console.log(this.props);
+        API.getGroupById(this.props.match.params.groupId)
+            .then(res => {
+                this.setState({ group: res.data })
+                console.log(this.state.group)
+        })
             .catch(err => console.log(err))
     }
 
+    joinGroup = () => {
+        var groupId = this.props.match.params.groupId
+        var userId = this.props.user._id
+        console.log(groupId);
+        console.log(userId);
+        var data = {
+            groupId,
+            userId
+        }
+        API.saveUserToGroup(data).then((dbResponse) => {
+            console.log(this.state.group)
+        })
+    }
 
     render() {
         return (
@@ -25,6 +43,11 @@ class Join extends Component {
                 <div className="row">
 
                     <div className="col s12">
+                    <div className="row">
+                        users here
+
+                        <Button waves="light" onClick={this.joinGroup}>See Group</Button>
+                    </div>
                     <Container fluid>
                         <Row>
                         <Col size="md-12">
@@ -47,7 +70,7 @@ class Join extends Component {
                         </Row>
                         <Row>
                         <Col size="md-2">
-                            <a to="/">← Back to Home</a>
+                            <Link to="/">← Back to Home</Link>
                         </Col>
                         </Row>
                     </Container>

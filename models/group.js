@@ -10,7 +10,10 @@ const groupSchema = new Schema({
   totalPot: Number,
   // totalPot: this.buyIn * this.numberOfParticipants,
   dateCreated: { type: Date, default: Date.now },
-  partipants: {}
+  participants: [{
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }]
 });
 
 const Group = mongoose.model("Group", groupSchema);

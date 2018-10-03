@@ -9,7 +9,10 @@ var UserSchema = new Schema({
   emailVerified: { type: Boolean, required: true },
   date: { type: Date, default: Date.now },
   photoURL: { type: String, required: false },
-  joinedGroups: {}
+  joinedGroups: [{
+    type: Schema.Types.ObjectId,
+    ref: "Group"
+  }]
 });
 
 const User = mongoose.model("User", UserSchema);

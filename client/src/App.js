@@ -100,6 +100,11 @@ class App extends Component {
                   return <Groups user={this.state.user} login={this.login} logout={this.logout} />
                 }
               } ></Route>
+              <Route exact path="/join/group/:groupId" render={
+                (props) => {
+                  return <Join user={this.state.user} login={this.login} logout={this.logout} {...props}/>
+                }
+              } ></Route>
               <Route exact path="/join" component={Join} />
             </Switch>
           </div>

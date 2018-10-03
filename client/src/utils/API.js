@@ -23,5 +23,8 @@ export default {
   },
   getUserByEmail: function (userEmail) {
     return axios.get("/api/user/signin", userEmail);
+  },
+  saveUserToGroup: function (groupUserData) {
+    return axios.post("/api/groups/addUser", groupUserData);
   }
 };

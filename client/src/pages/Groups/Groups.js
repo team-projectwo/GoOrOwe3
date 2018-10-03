@@ -95,7 +95,7 @@ class Groups extends Component {
                             {this.state.groups.length ? (
                                 <ul>
                                     {this.state.groups.map(group => (
-                                        <Card title= {group.title} _id= {group._id}>
+                                        <Card key={group._id} title= {group.title} _id= {group._id}>
                                                 <ul key={group._id}>
                                                     <a href={"/groups/" + group._id}>
                                                         <strong>
