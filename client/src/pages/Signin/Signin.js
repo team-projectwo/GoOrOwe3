@@ -10,6 +10,7 @@ import API from "../../utils/API";
 import firebase, { auth, provider } from "../../Firebase";
 import { Row, Input, Icon, CardPanel } from "react-materialize";
 
+
 class Signin extends Component {
   constructor() {
     super();
