@@ -5,6 +5,7 @@ import Groups from "./pages/Groups";
 import Signin from "./pages/Signin";
 import Join from "./pages/Join";
 import API from "./utils/API";
+import GroupInfo from "./pages/GroupInfo";
 // import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
 // import Nav from "./components/Nav";
@@ -98,6 +99,11 @@ class App extends Component {
               <Route exact path="/groups" render={
                 () => {
                   return <Groups user={this.state.user} login={this.login} logout={this.logout} />
+                }
+              } ></Route>
+              <Route exact path="/group/info/:groupId" render={
+                (props) => {
+                  return <GroupInfo user={this.state.user} login={this.login} logout={this.logout} {...props}/>
                 }
               } ></Route>
               <Route exact path="/join/group/:groupId" render={

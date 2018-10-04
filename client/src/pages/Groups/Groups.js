@@ -117,7 +117,7 @@ class Groups extends Component {
                                     {this.state.groups.map(group => (
                                         <Card key={group._id} title= {group.title} _id= {group._id}>
                                                 <ul key={group._id}>
-                                                    <a href={"/groups/" + group._id}>
+                                                    <a href={"/group/info/" + group._id}>
                                                         <strong>
                                                         Buy In: ${group.buyIn} 
                                                         <br/>
