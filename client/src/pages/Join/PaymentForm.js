@@ -37,13 +37,9 @@ function PaymentForm() {
             <Row />
           </Container>
           <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
-            <div className="Checkout">
-              <h1>Enter Your Card Info</h1>
-
-              <Elements>
-                <CheckoutForm />
-              </Elements>
-            </div>
+            <Elements>
+              <CheckoutForm />
+            </Elements>
           </StripeProvider>
 
           <br />
