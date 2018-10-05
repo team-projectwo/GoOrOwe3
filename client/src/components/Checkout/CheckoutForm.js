@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
+import { Redirect } from "react-router-dom";
 
 const CardElementStyle = {
+  position: "absolute",
+  top: 350,
+  width: 350
+};
+
+const h1Style = {
   position: "absolute",
   top: 350,
   width: 350
@@ -26,7 +33,10 @@ class CheckoutForm extends Component {
   }
 
   render() {
-    if (this.state.complete) return <h1>Purchase Complete</h1>;
+    if (this.state.complete)
+      return <h1 style={h1Style}>Purchase Complete!</h1> ? (
+        <Redirect to="/account" />
+      ) : null;
 
     return (
       <div className="checkout" style={CardElementStyle}>

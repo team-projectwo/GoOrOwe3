@@ -49,7 +49,7 @@ class Home extends Component {
                     Keep Yourself and Your Friends Accountable. Hit The Gym or
                     Pay Up.
                   </p>
-                  {/* {this.props.user ? <Redirect to="/groups" /> : null} */}
+                  {this.props.user ? <Redirect to="/groups" /> : null}
 
                   {this.props.user ? (
                     <Button
@@ -69,10 +69,10 @@ class Home extends Component {
                       variant="outlined"
                       style={Buttonstyle}
                     >
-                      Sign In
+                      Sign In With your Google account
                     </Button>
                   )}
-                  <Button
+                  {/* <Button
                     href="/groups"
                     color="secondary"
                     className={this.button}
@@ -80,7 +80,7 @@ class Home extends Component {
                     style={Buttonstyle}
                   >
                     Get Started
-                  </Button>
+                  </Button> */}
                   {this.props.user ? (
                     <div>
                       <div className="user-profile">
