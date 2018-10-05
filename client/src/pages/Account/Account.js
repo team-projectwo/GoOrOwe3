@@ -39,7 +39,6 @@ class Account extends Component {
     this.state = {
       user: ""
     };
-    this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
   }
 
@@ -102,31 +101,8 @@ class Account extends Component {
     });
   }
 
-  login() {
-    auth.signInWithPopup(provider).then(result => {
-      ///result.user;
-      const user = {}
-      user.displayName = result.user.displayName
-      user.email = result.user.email
-      user.uid = result.user.uid
-      user.emailVerified = result.user.emailVerified
-      user.photoURL = result.user.photoURL
-      console.log(user);
-      // /api/user/signin
-      API.createUser(user).then((res) => {
-        console.log(res);
-        this.setState({
-          user: res.data
-        });
-      }).catch((err) => {
-        if (err) {
-          console.log("If error 422 is above this console.log() dont trip that user probably exists in your db already and unique clause stopped it from duplication --Ryan B");
-        }
-      })
 
-    });
-  }
-  
+
 
 
 
@@ -139,7 +115,25 @@ class Account extends Component {
     return (
 
       <div className="container">
-        <img alt="image" src={this.state.user.photoURL} />
+
+        <Button
+
+          onClick={this.props.logout}
+          color="secondary"
+          className={this.button}
+          variant="outlined"
+          style={Buttonstyle}
+        >Log Out</Button>
+
+        {this.props.user ? (
+          <div>
+            <div className="user-profile">
+              <img src={this.props.user.photoURL} />
+            </div>
+          </div>
+        ) : (
+            <div className="wrapper" />
+          )}
 
         <ul className="collapsible">
           <li>
@@ -152,17 +146,12 @@ class Account extends Component {
             <div className="collapsible-body"><span>Display Name: {this.state.user.displayName}</span></div>
           </li>
         </ul>
-        <Button
-        
-          onClick={this.props.logout}
-          color="secondary"
-          className={this.button}
-          variant="outlined"
-          style={Buttonstyle}
-        >Log Out</Button>
-</div>
-    )}};
-  
+      </div>
+
+    )
+  }
+};
+
 
 export default Account;
 
