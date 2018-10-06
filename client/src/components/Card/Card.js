@@ -14,6 +14,7 @@ class Card extends Component {
   //     group: null
   // };
 
+
   render() {
     console.log(this.props);
     return (
@@ -43,6 +44,7 @@ class Card extends Component {
       </Col>
     );
   }
+
 }
 
 export default Card;

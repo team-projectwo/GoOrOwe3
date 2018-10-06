@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Account from "./pages/Account"
 import Groups from "./pages/Groups";
-import Signin from "./pages/Signin";
 import Join from "./pages/Join";
 import MyGroups from "./pages/MyGroups";
 import API from "./utils/API";
@@ -12,9 +11,6 @@ import GroupInfo from "./pages/GroupInfo";
 // import NoMatch from "./pages/NoMatch";
 // import Nav from "./components/Nav";
 import firebase, { auth, provider } from "../src/Firebase";
-import { Elements, StripeProvider } from 'react-stripe-elements';
-import CheckoutForm from './components/Checkout/CheckoutForm';
-import * as firebaseui from 'firebaseui'
 
 
 
@@ -36,7 +32,7 @@ class App extends Component {
           email: user.email
         }
         API.getUserByEmail(userEmail).then((res) => {
-          console.log(res);
+          // console.log(res);
           this.setState({
             user: res.data[0]
           });
@@ -119,7 +115,7 @@ class App extends Component {
                   return <Account user={this.state.user} logout={this.logout} login={this.login} />
                 }
               }></Route>
-              <Route exact path="/mygroups" component={MyGroups} />
+              <Route exact path="/mygroups/:userId" component={MyGroups} />
             </Switch>
           </div>
         </Router>

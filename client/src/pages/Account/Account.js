@@ -1,27 +1,31 @@
 // import React, { Component } from 'react';
 // import { Parallax, Button, Row, Col, CardTitle, Footer } from "react-materialize";
-import Card from "../../components/Card/Card";
+// import Card from "../../components/Card/Card";
 import API from "../../utils/API";
-// import { Container } from "../../components/Grid";
-// import Jumbotron from "../../components/Jumbotron";
-// import { Input, TextArea, FormBtn } from "../../components/Form";
-import { CLIENT_RENEG_LIMIT } from 'tls';
+
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import firebase, { auth, provider } from "../../Firebase";
 import Button from "@material-ui/core/Button";
 
 
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import { Grid } from "../../components/Grid";
-import user from "../Signin"
-import Paper from '@material-ui/core/Paper';
-import { Row, Input, Icon, CardPanel } from "react-materialize";
+// import PropTypes from 'prop-types';
+// import { withStyles } from '@material-ui/core/styles';
+// import AppBar from '@material-ui/core/AppBar';
+// import Tabs from '@material-ui/core/Tabs';
+// import Tab from '@material-ui/core/Tab';
+// import Typography from '@material-ui/core/Typography';
+// import { Grid } from "../../components/Grid";
+// import user from "../Signin"
+// import Paper from '@material-ui/core/Paper';
+// import { Row, Input, Icon, CardPanel } from "react-materialize";
 
 var Buttonstyle = {
   marginLeft: "15px",
@@ -108,18 +112,18 @@ class Account extends Component {
 
   render() {
     console.log(this.state.user)
-    console.log(this.state.user.photoURL)
+    // console.log(this.state.user.photoURL)
     const { classes } = this.props;
     const { value } = this.state;
 
     return (
 
       <div className="container">
-
         <Button
 
           onClick={this.props.logout}
           color="secondary"
+          node='a' href='/'
           className={this.button}
           variant="outlined"
           style={Buttonstyle}
@@ -138,7 +142,8 @@ class Account extends Component {
         <ul className="collapsible">
           <li>
             <div className="collapsible-header"><i className="material-icons">group</i>What Groups am I in?</div>
-            <div className="collapsible-body"><span></span></div>
+            <div className="collapsible-body"><span> </span></div>
+            <a className="waves-effect waves-light btn" node='a' href='/Groups'><i className="material-icons right">group</i>See Groups page</a>
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">account_box</i>Person information</div>
