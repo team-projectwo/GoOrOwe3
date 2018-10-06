@@ -8,6 +8,7 @@ import API from "../../utils/API";
 import { CLIENT_RENEG_LIMIT } from 'tls';
 import firebase, { auth, provider } from "../../Firebase";
 import Button from "@material-ui/core/Button";
+import { Link } from 'react-router-dom';
 
 
 
@@ -139,6 +140,17 @@ class Account extends Component {
           <li>
             <div className="collapsible-header"><i className="material-icons">group</i>What Groups am I in?</div>
             <div className="collapsible-body"><span></span></div>
+            <div className="collapsible-body"><span></span></div>
+            {/* <a className="waves-effect waves-light btn" Link to="/Groups">React<i className="material-icons right">groups</i>Join Group</a> */}
+            <div>
+
+                <button className="waves-effect waves-light btn" >
+                <ul>
+                    <li><Link to="/Groups">Join group</Link></li>
+                </ul>
+                </button>
+
+            </div>
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">account_box</i>Person information</div>
