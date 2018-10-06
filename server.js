@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3001;
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 app.use(require("body-parser").text());
 
+const cors = require("cors");
 db = require("./models")
 
 // Define middleware here
@@ -18,6 +19,7 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
+app.use(cors);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/goOrOwe_db");
