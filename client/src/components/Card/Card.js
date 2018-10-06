@@ -23,7 +23,7 @@ class Card extends Component {
                     <h3>{this.props.children}</h3>
 
                     <div className="card-action">
-                        <Link to={'/group/info/' + this.props._id}><Button waves="light">See Group</Button></Link>
+                        <Link to={'/group/info/' + this.props._id}><Button onClick={this.props.joinGroup} waves="light">See Group</Button></Link>
                     </div>
                 </div>
             </Col>

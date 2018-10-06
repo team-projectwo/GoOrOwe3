@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Parallax, Button, Row, Col, CardTitle, Footer, Container } from "react-materialize";
+import { Button, Row, Col, Footer, Container } from "react-materialize";
 import Card from "../../components/Card/Card";
 import API from "../../utils/API";
 // import { Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import { Input, TextArea, FormBtn } from "../../components/Form";
-import { CLIENT_RENEG_LIMIT } from 'tls';
+// import { CLIENT_RENEG_LIMIT } from 'tls';
 
 
 
@@ -23,18 +23,11 @@ var FooterStyle = {
 
 }
 
-var groupButtonStyle = {
-    display: 'flex',
-    position: 'fixed',
-    margin: '-80 -150 -300 580',
-}
-
-{
-    // position: "absolute",
-    // left: 0,
-    // bottom: 0,
-    // right: 0
-}
+// var groupButtonStyle = {
+//     display: 'flex',
+//     position: 'fixed',
+//     margin: '-80 -150 -300 580',
+// }
 
 class Groups extends Component {
     constructor() {
@@ -47,7 +40,8 @@ class Groups extends Component {
             numberOfParticipants: 0,
             duration: "",
             totalPot: 0,
-            createGroup: false
+            createGroup: false,
+            user: {}
         };
 
         // this.createGroupFunction = this.createGroupFunction.bind(this);
@@ -61,11 +55,17 @@ class Groups extends Component {
     // }
 
     componentDidMount() {
+        console.log(this.state.user)
         this.loadGroups();
     }
 
 
     loadGroups = () => {
+        API.getUserByEmail()
+            .then(res => {
+                console.log(res.data[0])
+                this.setState({ user: res.data[0] })
+            }).catch(err => console.log(err));
         API.getGroups()
             .then(res => {
                 // console.log(typeof(this.state.title))
@@ -74,9 +74,9 @@ class Groups extends Component {
                 // console.log(typeof(this.state.info))
                 // console.log(typeof(this.state.numberOfParticipants))
                 // console.log(typeof(this.state.totalPot))          
+                console.log(res.data)
                 this.setState({ groups: res.data, title: "", info: "", buyIn: "", numberOfParticipants: this.state.numberOfParticipants + 1, duration: "", totalPot: "" })
             }
-
             )
             .catch(err => console.log(err));
     };
@@ -106,11 +106,25 @@ class Groups extends Component {
         }
     };
 
+    joinGroup = () => {
+        var groupId = this.props.match.params.groupId
+        var userId = this.props.user._id
+        console.log(groupId);
+        console.log(userId);
+        var data = {
+            groupId,
+            userId
+        }
+        API.saveUserToGroup(data).then((dbResponse) => {
+            console.log(this.state.group)
+        })
+    }
+
     render() {
         return (
             <Container>
                 <Row>
-                    <Col className='col s12 center-align'>
+                    <Col className='col s6 center-align'>
                         <Jumbotron>
                             <h1>Groups to Join</h1>
                         </Jumbotron>
@@ -137,7 +151,7 @@ class Groups extends Component {
                                 <h3>No Results to Display</h3>
                             )}
                     </Col>
-                    {/* <Col className='col s6 center-align'>
+                    <Col className='col s6 center-align'>
                         <Jumbotron>
                             <h1>Create a Group</h1>
                         </Jumbotron>
@@ -174,7 +188,7 @@ class Groups extends Component {
                                 Submit Group
                             </FormBtn>
                         </form>
-                    </Col> */}
+                    </Col>
                 </Row>
                 <div>
                     {this.props.user ?
@@ -183,7 +197,7 @@ class Groups extends Component {
                             <Row>
                                 <Col>
                                     <div>
-                                        <Button waves='light' node='a' href='/mygroups'>My Groups</Button>
+                                        <Button waves='light' node='a' href={'/mygroups/' + this.state.user._id}>My Groups</Button>
                                     </div>
                                 </Col>
                                 <Col>

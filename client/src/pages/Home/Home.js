@@ -31,6 +31,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log(this.props.user)
     return (
       <div className="app">
         <header>
