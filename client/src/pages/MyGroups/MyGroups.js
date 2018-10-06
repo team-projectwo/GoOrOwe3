@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import { Button, Col, Card } from "react-materialize";
+import {Link} from "react-router-dom"
+import API from "../../utils/API";
 
+
+
+var cardStyle = {
+    // display: 'flex',
+    minHeight: '425px',
+    padding: "20px"
+
+}
 
 class MyGroups extends Component {
 
@@ -11,7 +22,9 @@ class MyGroups extends Component {
             latitude: null,
             longitude: null,
             error: null,
-            gyms: []
+            gyms: [],
+            user:{},
+            joinedGroups: []
         };
 
         this.timer = setTimeout(this.googleDataFetch, 5000)
@@ -31,6 +44,18 @@ class MyGroups extends Component {
             (error) => this.setState({ error: error.message }),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
         );
+        API.getUserById(this.props.match.params.userId)
+            .then(res => {
+                console.log(res.data)
+                this.setState({ user: res.data, 
+                                joinedGroups: res.data.joinedGroups
+                 })
+            })
+        API.getGroupById()
+            .then(res => {
+                console.log(res)
+            })
+
         return
 
 
@@ -87,7 +112,28 @@ class MyGroups extends Component {
                 </div>
 
                 <div>
-
+                {this.state.joinedGroups.length ? (
+                            <ul>
+                                {this.state.joinedGroups.map(g => (
+                                    <Card key={g._id} title={g.title} _id={g._id}>
+                                        <ul key={g._id}>
+                                            <a href={"/group/info/" + g._id}>
+                                                <strong>
+                                                    Buy In: ${g.buyIn}
+                                                    <br />
+                                                    Total Pot: ${g.totalPot}
+                                                    <br />
+                                                    Participants: {g.numberOfParticipants}
+                                                </strong>
+                                            </a>
+                                            {/* <DeleteBtn onClick={() => this.deleteGroup(group._id)} /> */}
+                                        </ul>
+                                    </Card>
+                                ))}
+                            </ul>
+                        ) : (
+                                <h3>No Joined Groups!</h3>
+                            )}
 
                 </div>
             </div>

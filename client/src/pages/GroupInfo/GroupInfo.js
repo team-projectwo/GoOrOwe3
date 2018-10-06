@@ -40,6 +40,7 @@ class GroupInfo extends Component {
         API.saveUserToGroup(data).then((dbResponse) => {
             console.log(this.state.group)
         })
+        window.location.reload();
     }
 
     loadJoinedUsers = () => {
@@ -80,7 +81,10 @@ class GroupInfo extends Component {
                     </Row>
                     <Row>
                         <Col className='col s12 center-align'>
-                            <Link to={'/join/group/' + this.props._id}> <Button waves="light" onClick={this.joinGroup}>Join Group</Button></Link>
+                            <Link to='#'> <Button waves="light" onClick={this.joinGroup}>Join Group</Button></Link>
+                        </Col>
+                        <Col className='col s12 center-align'>
+                            <Link to={'/join/group/' + this.props._id}> <Button waves="light">Add Buy In</Button></Link>
                         </Col>
                         <Col className='col s12 center-align'>
                             <Link to="/">← Back to Home</Link>
@@ -88,7 +92,7 @@ class GroupInfo extends Component {
                     </Row>
 
                         <Row>
-                            participants here
+                            <h1>Joined Participants:</h1>
                             
                             {this.state.participants.length ? (
                                 <ul>

@@ -45,7 +45,10 @@ function Review(props) {
   return (
     <React.Fragment>
       <Typography variant="title" gutterBottom>
-        Group Summary
+        <p>Group: Lose It</p>
+        <p>Buy In: <strong>$10.00</strong></p>
+        <p>Duration: 6 weeks</p>
+        <p>Info: Hit the gym at least 3 times per week</p>
       </Typography>
     </React.Fragment>
   );

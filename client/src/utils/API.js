@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { func } from "prop-types";
 
 export default {
   // Gets all books
@@ -9,6 +10,9 @@ export default {
   getGroupById: function(id) {
     return axios.get("/api/groups/" + id);
   },
+  getUserById: function(id) {
+    return axios.get("/api/user/" + id);
+  },
   // Deletes the book with the given id
   deleteBook: function(id) {
     return axios.delete("/api/books/" + id);
@@ -18,7 +22,7 @@ export default {
     return axios.post("/api/groups", groupData);
   },
   createUser: function (user){
-    console.log(user);
+    // console.log(user);
     return axios.post("/api/user/signin", user);
   },
   getUserByEmail: function (userEmail) {

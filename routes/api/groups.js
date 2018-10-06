@@ -14,6 +14,7 @@ router
   .get(groupsController.findById)
   .put(groupsController.update)
   .delete(groupsController.remove);
+  
 
 router
   .route("/addUser")
