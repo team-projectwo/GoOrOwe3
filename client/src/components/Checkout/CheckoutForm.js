@@ -39,6 +39,15 @@ class CheckoutForm extends Component {
       ) : null;
 
     return (
+      // <div className="checkout">
+      //   {this.state.complete ? (
+      //      <h1>Purchase Complete</h1>
+      //     //  setTimeout(() => {
+             
+      //     //  }, 2000);
+      //   ) : (
+      //     <p>Would you like to complete the purchase?</p>
+      //   )}
       <div className="checkout" style={CardElementStyle}>
         <p>Please enter your card info below:</p>
         <CardElement />
