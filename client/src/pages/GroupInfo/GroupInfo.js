@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import { Container } from "../../components/Grid";
 import {Link} from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
+
 // import "../../../src/pages/Join/join.css";
 
 
@@ -89,14 +90,29 @@ class GroupInfo extends Component {
                         <Row>
                             participants here
                             
-                                {/* {this.populateParticipants(this.state.participants)} */}
-                                {this.state.participants.map(p => (
+                            {this.state.participants.length ? (
+                                <ul>
+                                    {this.state.participants.map(p => (
+                                        <Card key={p._id} title= {p.displayName} _id= {p._id}>
+                                                <ul key={p._id}>
+                                                        <strong>
+                                                        <img href={p.photoURL}/>
+                                                        </strong>
+                                                </ul>
+                                        </Card>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <h3>Be the first to join!</h3>
+                            )}
+                                
+                                {/* {this.state.participants.map(p => (
                                     <ul>
                                     <li>{p.displayName}</li>
                                     <li>{p.email}</li>
                                     </ul>
                                 ))}
-                           
+                            */}
 
                         </Row>
                 </Col>

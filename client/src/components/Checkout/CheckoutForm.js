@@ -26,9 +26,9 @@ class CheckoutForm extends Component {
       <div className="checkout">
         {this.state.complete ? (
            <h1>Purchase Complete</h1>
-           setTimeout(() => {
+          //  setTimeout(() => {
              
-           }, 2000);
+          //  }, 2000);
         ) : (
           <p>Would you like to complete the purchase?</p>
         )}
