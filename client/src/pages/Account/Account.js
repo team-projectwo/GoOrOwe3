@@ -2,10 +2,14 @@
 // import { Parallax, Button, Row, Col, CardTitle, Footer } from "react-materialize";
 // import Card from "../../components/Card/Card";
 import API from "../../utils/API";
-// import { Container } from "../../components/Grid";
-// import Jumbotron from "../../components/Jumbotron";
-// import { Input, TextArea, FormBtn } from "../../components/Form";
-// import { CLIENT_RENEG_LIMIT } from 'tls';
+
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import firebase, { auth, provider } from "../../Firebase";
 import Button from "@material-ui/core/Button";
 
@@ -115,11 +119,11 @@ class Account extends Component {
     return (
 
       <div className="container">
-
         <Button
 
           onClick={this.props.logout}
           color="secondary"
+          node='a' href='/'
           className={this.button}
           variant="outlined"
           style={Buttonstyle}
@@ -138,7 +142,8 @@ class Account extends Component {
         <ul className="collapsible">
           <li>
             <div className="collapsible-header"><i className="material-icons">group</i>What Groups am I in?</div>
-            <div className="collapsible-body"><span></span></div>
+            <div className="collapsible-body"><span> </span></div>
+            <a className="waves-effect waves-light btn" node='a' href='/Groups'><i className="material-icons right">group</i>See Groups page</a>
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">account_box</i>Person information</div>
