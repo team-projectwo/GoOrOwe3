@@ -141,7 +141,8 @@ class Account extends Component {
         <ul className="collapsible">
           <li>
             <div className="collapsible-header"><i className="material-icons">group</i>What Groups am I in?</div>
-            <div className="collapsible-body"><span> yellow</span></div>
+            <div className="collapsible-body"><span> </span></div>
+            <a className="waves-effect waves-light btn" node='a' href='/Groups'><i className="material-icons right">group</i>See Groups page</a>
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">account_box</i>Person information</div>
