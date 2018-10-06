@@ -11,7 +11,11 @@ class MyGroups extends Component {
             latitude: null,
             longitude: null,
             error: null,
+            gyms: []
         };
+
+        this.timer = setTimeout(this.googleDataFetch, 5000)
+
         this.googleDataFetch = this.googleDataFetch.bind(this)
     }
 
@@ -22,29 +26,53 @@ class MyGroups extends Component {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                     error: null,
-                    gyms: []
                 });
             },
             (error) => this.setState({ error: error.message }),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
         );
+        return
 
-        this.googleDataFetch()
 
     }
 
+    // componentWillUnmount() {
+
+    //     console.log(this.state.latitude, this.state.longitude)
 
 
-    googleDataFetch() {
+    //     this.googleDataFetch(this.state.latitude, this.state.longitude)
+    //     return
+    // }
 
-        axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.479,-111.919&radius=1500&type=gym&keyword=gym&key=AIzaSyBpN9uvSZcmOLHtbehWtVy3ISrbBOa84Y0`, { headers: { 'Access-Control-Allow-Origin': '*' } })
+
+
+    googleDataFetch = () => {
+
+
+
+        axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.state.latitude},${this.state.longitude}&radius=1500&type=gym&keyword=gym&key=AIzaSyBpN9uvSZcmOLHtbehWtVy3ISrbBOa84Y0`, { headers: { 'Access-Control-Allow-Origin': '*' } })
             .then(res => {
                 // const gyms = res.data;
-                this.setState({ gyms: res.data });
-                console.log(this.state.gyms);
+                this.setState({ gyms: res.data.results });
+                console.log(res.data);
+
+                console.log(this.state.gyms)
+
             })
 
-    }
+        console.log(this.state.latitude)
+        console.log(this.state.longitude)
+
+        // this.groupLoopFunction()
+    };
+
+    // groupLoopFunction = () => {
+    //     for (i = 0; i < this.state.gyms.length; i++) {
+
+    //     }
+
+    // }
 
     render() {
         return (
@@ -55,9 +83,11 @@ class MyGroups extends Component {
                     {this.state.error ? <p>Error: {this.state.error}</p> : null}
                 </div>
                 <div>
+                    {this.state.gyms !== null ? <p>you are checked in</p> : null}
+                </div>
 
-                    {/* {this.state.gyms.map(gyms => <li>{gyms.results.name}</li>)} */}
-                    {/* <div>{this.state.res.data}</div> */}
+                <div>
+
 
                 </div>
             </div>
