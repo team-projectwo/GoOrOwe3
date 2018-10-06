@@ -1,12 +1,6 @@
 
 import React, { Component } from "react";
 import { Parallax, Button, Row, Col, Card, CardTitle } from "react-materialize";
-// import {
-//   Elements,
-//   StripeProvider,
-//   CardElement,
-//   injectStripe
-// } from "react-stripe-elements";
 import API from "../../utils/API";
 import { Container } from "../../components/Grid";
 import {Link} from "react-router-dom";
@@ -17,15 +11,18 @@ import Jumbotron from "../../components/Jumbotron";
 
 class GroupInfo extends Component {
     state = {
-        group: {}
+        group: {},
+        participants: [],
+     
     };
 
     componentDidMount() {
         console.log(this.props);
         API.getGroupById(this.props.match.params.groupId)
             .then(res => {
-                this.setState({ group: res.data })
+                this.setState({ group: res.data, participants: res.data.participants})
                 console.log(this.state.group)
+                console.log(this.state.participants)
         })
             .catch(err => console.log(err))
     }
@@ -43,6 +40,16 @@ class GroupInfo extends Component {
             console.log(this.state.group)
         })
     }
+
+    loadJoinedUsers = () => {
+        API.getGroupById()
+            .then(res => {          
+                this.setState({ groups: res.data, title: "", info: "", buyIn: "", numberOfParticipants: "", duration: "", totalPot: "" })
+            }
+
+            )
+            .catch(err => console.log(err));
+    };
 
     render() {
         return (
@@ -80,19 +87,19 @@ class GroupInfo extends Component {
                     </Row>
 
                         <Row>
-                            users here
+                            participants here
+                            
+                                {/* {this.populateParticipants(this.state.participants)} */}
+                                {this.state.participants.map(p => (
+                                    <ul>
+                                    <li>{p.displayName}</li>
+                                    <li>{p.email}</li>
+                                    </ul>
+                                ))}
+                           
 
                         </Row>
                 </Col>
-            
-                    {/* <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
-                        <div className="example">
-                            <h1>React Stripe Elements Example</h1>
-                            <Elements>
-                                <CheckoutForm />
-                            </Elements>
-                        </div>
-                    </StripeProvider> */}
         </Container>
                 
         )
