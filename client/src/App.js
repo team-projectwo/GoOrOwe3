@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
+import Account from "./pages/Account"
 import Groups from "./pages/Groups";
 import Signin from "./pages/Signin";
 import Join from "./pages/Join";
+import MyGroups from "./pages/MyGroups";
 import API from "./utils/API";
 import GroupInfo from "./pages/GroupInfo";
 // import Detail from "./pages/Detail";
@@ -28,7 +30,7 @@ class App extends Component {
 
   componentDidMount() {
     auth.onAuthStateChanged(user => {
-      console.log(user);
+      // console.log(user);
       if (!(!user && typeof user === "object")) {
         var userEmail = {
           email: user.email
@@ -43,7 +45,7 @@ class App extends Component {
       }
 
       // how to properly check for null values
-      if ( !(!user && typeof user === "object") ) {
+      if (!(!user && typeof user === "object")) {
 
         this.setState({
           user: user
@@ -70,7 +72,7 @@ class App extends Component {
       user.uid = result.user.uid
       user.emailVerified = result.user.emailVerified
       user.photoURL = result.user.photoURL
-      console.log(user);
+      // console.log(user);
       // /api/user/signin
       API.createUser(user).then((res) => {
         console.log(res);
@@ -103,15 +105,21 @@ class App extends Component {
               } ></Route>
               <Route exact path="/group/info/:groupId" render={
                 (props) => {
-                  return <GroupInfo user={this.state.user} login={this.login} logout={this.logout} {...props}/>
+                  return <GroupInfo user={this.state.user} login={this.login} logout={this.logout} {...props} />
                 }
               } ></Route>
               <Route exact path="/join/group/:groupId" render={
                 (props) => {
-                  return <Join user={this.state.user} login={this.login} logout={this.logout} {...props}/>
+                  return <Join user={this.state.user} login={this.login} logout={this.logout} {...props} />
                 }
               } ></Route>
               <Route exact path="/join" component={Join} />
+              <Route exact path="/Account" render={
+                () => {
+                  return <Account user={this.state.user} logout={this.logout} login={this.login} />
+                }
+              }></Route>
+              <Route exact path="/mygroups" component={MyGroups} />
             </Switch>
           </div>
         </Router>
