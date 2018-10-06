@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Parallax, Button, Row, Col, CardTitle, Footer } from "react-materialize";
+import { Parallax, Button, Row, Col, CardTitle, Footer, Container } from "react-materialize";
 import Card from "../../components/Card/Card";
 import API from "../../utils/API";
-import { Container } from "../../components/Grid";
+// import { Container } from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import { CLIENT_RENEG_LIMIT } from 'tls';
@@ -12,10 +12,12 @@ import { CLIENT_RENEG_LIMIT } from 'tls';
 
 var FooterStyle = {
     // display: 'flex',
-    minHeight: '200px',
+    marginLeft: '200px',
+    minHeight: '100px',
+    overflow: 'hidden',
     // flexDirection: 'column',
     // flex: '1 0 auto',
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
     width: '100%'
 
@@ -106,36 +108,36 @@ class Groups extends Component {
 
     render() {
         return (
-            <Container fluid>
+            <Container>
                 <Row>
-                    <Col className='col s6 center-align'>
+                    <Col className='col s12 center-align'>
                         <Jumbotron>
                             <h1>Groups to Join</h1>
                         </Jumbotron>
-                            {this.state.groups.length ? (
-                                <ul>
-                                    {this.state.groups.map(group => (
-                                        <Card key={group._id} title= {group.title} _id= {group._id}>
-                                                <ul key={group._id}>
-                                                    <a href={"/group/info/" + group._id}>
-                                                        <strong>
-                                                        Buy In: ${group.buyIn} 
-                                                        <br/>
-                                                        Total Pot: ${group.totalPot}
-                                                        <br/>
-                                                        Participants: {group.numberOfParticipants}
-                                                        </strong>
-                                                    </a>
-                                                    {/* <DeleteBtn onClick={() => this.deleteGroup(group._id)} /> */}
-                                                </ul>
-                                        </Card>
-                                    ))}
-                                </ul>
-                            ) : (
+                        {this.state.groups.length ? (
+                            <ul>
+                                {this.state.groups.map(group => (
+                                    <Card key={group._id} title={group.title} _id={group._id}>
+                                        <ul key={group._id}>
+                                            <a href={"/group/info/" + group._id}>
+                                                <strong>
+                                                    Buy In: ${group.buyIn}
+                                                    <br />
+                                                    Total Pot: ${group.totalPot}
+                                                    <br />
+                                                    Participants: {group.numberOfParticipants}
+                                                </strong>
+                                            </a>
+                                            {/* <DeleteBtn onClick={() => this.deleteGroup(group._id)} /> */}
+                                        </ul>
+                                    </Card>
+                                ))}
+                            </ul>
+                        ) : (
                                 <h3>No Results to Display</h3>
                             )}
                     </Col>
-                    <Col className='col s6 center-align'>
+                    {/* <Col className='col s6 center-align'>
                         <Jumbotron>
                             <h1>Create a Group</h1>
                         </Jumbotron>
@@ -171,12 +173,13 @@ class Groups extends Component {
                             >
                                 Submit Group
                             </FormBtn>
-                        </form>       
-                    </Col>
+                        </form>
+                    </Col> */}
                 </Row>
                 <div>
                     {this.props.user ?
-                        <Footer className='center-align' style={FooterStyle}>
+
+                        <Footer style={FooterStyle}>
                             <Row>
                                 <Col>
                                     <div>
